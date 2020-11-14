@@ -5,13 +5,13 @@ import { Injectable } from '@angular/core';
 })
 export class ClockSettingsService {
   private _workingTime: number;
-  private _sRestTime: number;
-  private _lRestTime: number;
+  private _sBreakTime: number;
+  private _lBreakTime: number;
 
   constructor() {
     this._workingTime = this.minToMs(25);
-    this._sRestTime = this.minToMs(5);
-    this._lRestTime = this.minToMs(15);
+    this._sBreakTime = this.minToMs(5);
+    this._lBreakTime = this.minToMs(15);
   }
 
   public minToMs(minutes: number): number {
@@ -28,18 +28,18 @@ export class ClockSettingsService {
     this._workingTime = this.minToMs(time);
   }
 
-  public get sRestTime(): number {
-    return this._sRestTime;
+  public get sBreakTime(): number {
+    return this._sBreakTime;
   }
 
-  public set sRestTime(time: number) {
-    this._sRestTime = this.minToMs(time);
+  public set sBreakTime(time: number) {
+    this._sBreakTime = this.minToMs(time);
   }
 
-  public get lRestTime(): number {
-    return this._lRestTime;
+  public get lBreakTime(): number {
+    return this._lBreakTime;
   }
 
-  public set lRestTime(time: number) {
-    this._lRestTime = this.minToMs(time);
+  public set lBreakTime(time: number) {
+    this._lBreakTime = this.minToMs(time);
   }}

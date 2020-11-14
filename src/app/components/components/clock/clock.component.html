@@ -1,15 +1,14 @@
 <div class="container">
     <div id="states">
-        <div>Pomodoro</div>
-        <div>Short Break</div>
-        <div>Long Break</div>
+        <div (click)="onSwitchToWorking()">Pomodoro</div>
+        <div (click)="onSwitchToSBreak()">Short Break</div>
+        <div (click)="onSwitchToLBreak()">Long Break</div>
     </div>
     <div id="timer">
-        <div>{{timeLeft}}</div>
+        <div>{{timeLeft | date:'mm:ss'}}</div>
     </div>
     <div id="actions">
-        <button>Start</button>
-        <button>Stop</button>
-        <button>Reset</button>
+        <button (click)="onStart()">Start</button>
+        <button (click)="onStop()">Stop</button>
     </div>
 </div>
