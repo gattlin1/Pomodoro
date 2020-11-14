@@ -1,0 +1,27 @@
+.container {
+    display: grid;
+    grid-template-areas: 'states'
+                         'timer'
+                         'actions';
+    gap: 15px;
+    padding: 10px;
+
+    #states {
+        grid-area: 'states';
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 15px;
+    }
+
+    #timer {
+        grid-area: 'timer';
+        text-align: center;
+    }
+
+    #actions {
+        grid-area: 'actions';
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 15px;
+    }
+}
