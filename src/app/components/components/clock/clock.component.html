@@ -1,8 +1,17 @@
 <div class="container">
     <div id="states">
-        <div (click)="onSwitchToWorking()">Pomodoro</div>
-        <div (click)="onSwitchToSBreak()">Short Break</div>
-        <div (click)="onSwitchToLBreak()">Long Break</div>
+        <div (click)="onSwitchState('Working')"
+             [class.is-active]="state === 'working'">
+             Pomodoro
+        </div>
+        <div (click)="onSwitchState('ShortBreak')"
+             [class.is-active]="state === 'shortBreak'">
+             Short Break
+        </div>
+        <div (click)="onSwitchState('LongBreak')"
+             [class.is-active]="state === 'longBreak'">
+             Long Break
+        </div>
     </div>
     <div id="timer">
         <div>{{timeLeft | date:'mm:ss'}}</div>

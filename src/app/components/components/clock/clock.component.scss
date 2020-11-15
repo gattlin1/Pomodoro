@@ -1,34 +1,68 @@
+@import '../../../../styles/variables.scss';
+
 .container {
     display: grid;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto 100px auto;
     gap: 15px;
     padding: 10px;
+    background-color: $working-secondary-background;
+    border-radius: 5%;
+    width: 400px;
+    color: white;
 
     #states {
         display: grid;
-        grid-template-columns: auto auto auto;
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 15px;
+        justify-content: center;
+        align-content: center;
 
         div {
+            padding: 5px;
+            text-align: center;
+            border-radius: 5%;
+
             &:hover {
                 cursor: pointer;
             }
+
+            &:active {
+                transform: scale(0.98);
+            }
+
+            &.is-active {
+                background-color: $working-tertiary-background;
+            }
+
         }
     }
 
     #timer {
         text-align: center;
+        align-self: center;
+        font-size: 50px;
     }
 
     #actions {
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: 1fr 1fr;
         gap: 15px;
 
         button {
+            border: none;
+            background-color: $working-tertiary-background;
+            color: white;
+            border-radius: 5%;
+            height: 30px;
+
             &:hover {
                 cursor: pointer;
             }
+
+            &:active {
+                transform: scale(0.98);
+            }
+
         }
     }
 }

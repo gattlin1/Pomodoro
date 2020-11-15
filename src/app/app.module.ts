@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ClockComponent } from './components/components/clock/clock.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { ClockComponent } from './components/components/clock/clock.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

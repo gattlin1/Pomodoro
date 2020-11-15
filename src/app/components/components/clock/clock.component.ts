@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ClockSettingsService } from 'src/app/services/clock-settings/clock-settings.service';
+import { TitleService } from 'src/app/services/title/title.service';
 import { State } from 'src/models/enums/state.enum';
 
 @Component({
@@ -12,29 +13,19 @@ export class ClockComponent {
   public state: State;
   private handle: any;
 
-  constructor(private clockService: ClockSettingsService) {
+  constructor(private clockService: ClockSettingsService, private titleService: TitleService) {
     this.state = State.Working;
-    this.timeLeft = this.clockService.workingTime;
+    this.timeLeft = this.clockService.getTime(this.state);
+    this.titleService.setTitle(this.state, this.timeLeft);
   }
 
-  public onSwitchToWorking(): void {
-    if (this.state !== State.Working) {
-      this.state = State.Working;
-      this.timeLeft = this.clockService.workingTime;
-    }
-  }
-
-  public onSwitchToSBreak(): void {
-    if (this.state !== State.ShortBreak) {
-      this.state = State.ShortBreak;
-      this.timeLeft = this.clockService.sBreakTime;
-    }
-  }
-
-  public onSwitchToLBreak(): void {
-    if (this.state !== State.LongBreak) {
-      this.state = State.LongBreak;
-      this.timeLeft = this.clockService.lBreakTime;
+  public onSwitchState(state: string): void {
+    const stateEnum: State = State[state];
+    if (this.state !== stateEnum) {
+      this.state = stateEnum;
+      this.clearTimer();
+      this.timeLeft = this.clockService.getTime(this.state);
+      this.titleService.setTitle(this.state, this.timeLeft);
     }
   }
 
@@ -42,10 +33,15 @@ export class ClockComponent {
     const aSecond = 1000;
     this.handle = setInterval(() => {
       this.timeLeft -= aSecond;
+      this.titleService.setTitle(this.state, this.timeLeft);
     }, aSecond);
   }
 
   public onStop(): void {
+    this.clearTimer();
+  }
+
+  private clearTimer(): void {
     clearInterval(this.handle);
   }
 }
