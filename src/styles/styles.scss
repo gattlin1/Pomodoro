@@ -1,3 +1,5 @@
+@import '@fortawesome/fontawesome-free/css/all.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import '../styles/variables.scss';
 /* You can add global styles to this file, and also import other style files */
 * {
@@ -6,5 +8,6 @@
 
 body {
     margin: 0;
-    background-color: $working-background-color;
+    background-color: $background-color;
+    font-family: 'Roboto', sans-serif;
 }

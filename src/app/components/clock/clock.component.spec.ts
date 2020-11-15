@@ -9,6 +9,7 @@ describe('ClockComponent', () => {
   let component: ClockComponent;
   let fixture: ComponentFixture<ClockComponent>;
   let clockSettings: ClockSettingsService;
+  jasmine.clock().install();
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -51,7 +52,6 @@ describe('ClockComponent', () => {
   it('time left decreases when starting timer', () => {
     // arrange
     const currentTime = component.timeLeft;
-    jasmine.clock().install();
 
     // act
     component.onStart();
@@ -67,10 +67,23 @@ describe('ClockComponent', () => {
     jasmine.clock().tick(1001);
     const currentTime = component.timeLeft;
 
+    // act
     component.onStop();
     jasmine.clock().tick(1001);
 
     // assert
     expect(currentTime).toBe(component.timeLeft);
+  });
+
+  it('timer stops at 0:00', () => {
+    // arrange
+    component.timeLeft = 3 * 1000;
+
+    // act
+    component.onStart();
+    jasmine.clock().tick(5001);
+
+    // assert
+    expect(component.timeLeft).toEqual(0);
   });
 });

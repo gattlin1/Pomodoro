@@ -30,11 +30,17 @@ export class ClockComponent {
   }
 
   public onStart(): void {
-    const aSecond = 1000;
-    this.handle = setInterval(() => {
-      this.timeLeft -= aSecond;
-      this.titleService.setTitle(this.state, this.timeLeft);
-    }, aSecond);
+    if (this.timeLeft > 0) {
+      const aSecond = 1000;
+      this.handle = setInterval(() => {
+        this.timeLeft -= aSecond;
+        this.titleService.setTitle(this.state, this.timeLeft);
+
+        if (this.timeLeft === 0) {
+          this.clearTimer();
+        }
+      }, aSecond);
+    }
   }
 
   public onStop(): void {

@@ -1,0 +1,34 @@
+<nav [class.is-closed]="isClosed">
+    <ul>
+        <li>
+            <i class="fas fa-bars"
+            (click)="onToggle()">
+        </i>
+        </li>
+        <hr>
+    </ul>
+        <div id="settings" *ngIf="!isClosed">
+            <div>
+                <label for="">Pomofocus</label>
+                <input
+                    type="number" step="1" min="1"
+                    [(ngModel)]="times['working']"
+                    [value]="times['working']">
+            </div>
+            <div>
+                <label for="">Short Break</label>
+                <input
+                    type="number" step="1" min="1"
+                    [(ngModel)]="times['shortBreak']"
+                    [value]="times['shortBreak']">
+            </div>
+            <div>
+                <label for="">Long Break</label>
+                <input
+                    type="number" step="1" min="1"
+                    [(ngModel)]="times['longBreak']"
+                    [value]="times['longBreak']">
+            </div>
+            <button (click)="onSave()">Save</button>
+        </div>
+</nav>

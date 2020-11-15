@@ -1,11 +1,11 @@
-@import '../../../../styles/variables.scss';
+@import '../../../styles/variables.scss';
 
 .container {
     display: grid;
     grid-template-rows: auto 100px auto;
     gap: 15px;
     padding: 10px;
-    background-color: $working-secondary-background;
+    background-color: $secondary-background;
     border-radius: 5%;
     width: 400px;
     color: white;
@@ -31,7 +31,7 @@
             }
 
             &.is-active {
-                background-color: $working-tertiary-background;
+                background-color: $tertiary-background;
             }
 
         }
@@ -50,7 +50,7 @@
 
         button {
             border: none;
-            background-color: $working-tertiary-background;
+            background-color: $tertiary-background;
             color: white;
             border-radius: 5%;
             height: 30px;
