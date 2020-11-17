@@ -47,22 +47,5 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 15px;
-
-        button {
-            border: none;
-            background-color: $tertiary-background;
-            color: white;
-            border-radius: 5%;
-            height: 30px;
-
-            &:hover {
-                cursor: pointer;
-            }
-
-            &:active {
-                transform: scale(0.98);
-            }
-
-        }
     }
 }
