@@ -33,13 +33,17 @@ export class ClockComponent {
     if (this.timeLeft > 0) {
       const aSecond = 1000;
       this.handle = setInterval(() => {
-        this.timeLeft -= aSecond;
-        this.titleService.setTitle(this.state, this.timeLeft);
-
-        if (this.timeLeft === 0) {
-          this.clearTimer();
+        if (this.timeLeft - aSecond <= 0) {
+          if (this.state === State.Working) {
+            this.onSwitchState('ShortBreak');
+          } else {
+            this.onSwitchState('Working');
+          }
+        } else {
+          this.timeLeft -= aSecond;
+          this.titleService.setTitle(this.state, this.timeLeft);
         }
-      }, aSecond);
+     }, aSecond);
     }
   }
 
