@@ -1,26 +1,33 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { NumberFormat } from 'src/models/enums/number-format.enum';
 import { State } from 'src/models/enums/state.enum';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ClockSettingsService {
   private timeSettings: object;
+  public settingsChangeSubscribe: Subscription;
+  public settingsChange = new EventEmitter();
 
   constructor() {
     this.timeSettings = {
       [State.Working]: this.minToMs(25),
       [State.ShortBreak]: this.minToMs(5),
-      [State.LongBreak]: this.minToMs(15)
+      [State.LongBreak]: this.minToMs(15),
     };
   }
 
-  public getTimeSettings(format: NumberFormat = NumberFormat.Milliseconds): object {
+  public getTimeSettings(
+    format: NumberFormat = NumberFormat.Milliseconds
+  ): object {
     const times = {};
     if (format === NumberFormat.Minutes) {
       times[State.Working] = this.msToMin(this.timeSettings[State.Working]);
-      times[State.ShortBreak] = this.msToMin(this.timeSettings[State.ShortBreak]);
+      times[State.ShortBreak] = this.msToMin(
+        this.timeSettings[State.ShortBreak]
+      );
       times[State.LongBreak] = this.msToMin(this.timeSettings[State.LongBreak]);
       return times;
     } else {
@@ -51,4 +58,7 @@ export class ClockSettingsService {
     return minutes;
   }
 
+  public onSettingsChange(): void {
+    this.settingsChange.emit();
+  }
 }

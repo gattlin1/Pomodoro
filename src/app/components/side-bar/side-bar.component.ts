@@ -6,7 +6,7 @@ import { State } from 'src/models/enums/state.enum';
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
-  styleUrls: ['./side-bar.component.scss']
+  styleUrls: ['./side-bar.component.scss'],
 })
 export class SideBarComponent {
   public isClosed = true;
@@ -24,6 +24,7 @@ export class SideBarComponent {
     this.clockSettings.setTime(State.Working, this.times[State.Working]);
     this.clockSettings.setTime(State.ShortBreak, this.times[State.ShortBreak]);
     this.clockSettings.setTime(State.LongBreak, this.times[State.LongBreak]);
+    this.clockSettings.onSettingsChange();
     this.isClosed = true;
   }
 }

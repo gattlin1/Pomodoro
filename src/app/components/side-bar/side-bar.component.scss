@@ -32,12 +32,15 @@ nav {
 
     #settings {
         display: grid;
+        grid-template-areas: "timer timer timer"
+                             "save save save";
         grid-template-columns: 1fr 1fr 1fr;
         gap: 10px;
         max-width: 300px;
         padding: 15px;
 
         input {
+            grid-area: timer;
             width: 100%;
             border-radius: 5%;
             border: none;
@@ -49,7 +52,10 @@ nav {
     }
 
     button {
+      grid-area: save;
+      grid-col-span: 1/-1;
       background-color: #007bff;
+      width: 100%;
     }
 
     &.is-closed {

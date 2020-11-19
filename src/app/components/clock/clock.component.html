@@ -1,23 +1,32 @@
 <div class="container">
-    <div id="states">
-        <div (click)="onSwitchState('Working')"
-             [class.is-active]="state === 'working'">
-             Pomodoro
-        </div>
-        <div (click)="onSwitchState('ShortBreak')"
-             [class.is-active]="state === 'shortBreak'">
-             Short Break
-        </div>
-        <div (click)="onSwitchState('LongBreak')"
-             [class.is-active]="state === 'longBreak'">
-             Long Break
-        </div>
+  <div id="states">
+    <div
+      (click)="onSwitchState('Working')"
+      [class.is-active]="state === 'working'"
+    >
+      Pomodoro
     </div>
-    <div id="timer">
-        <div>{{timeLeft | date:'mm:ss'}}</div>
+    <div
+      (click)="onSwitchState('ShortBreak')"
+      [class.is-active]="state === 'shortBreak'"
+    >
+      Short Break
     </div>
-    <div id="actions">
-        <button (click)="onStart()">Start</button>
-        <button (click)="onStop()">Stop</button>
+    <div
+      (click)="onSwitchState('LongBreak')"
+      [class.is-active]="state === 'longBreak'"
+    >
+      Long Break
     </div>
+  </div>
+  <div id="timer">
+    <div>{{ timeLeft | date: "mm:ss" }}</div>
+  </div>
+  <div>
+    <progress [max]="maxTime" [value]="maxTime - timeLeft"></progress>
+  </div>
+  <div id="actions">
+    <button (click)="onStart()">Start</button>
+    <button (click)="onStop()">Stop</button>
+  </div>
 </div>
