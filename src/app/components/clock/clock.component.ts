@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClockSettingsService } from 'src/app/services/clock-settings/clock-settings.service';
 import { TitleService } from 'src/app/services/title/title.service';
+import { NotificationsService } from 'src/app/services/notifications/notifications.service';
 import { State } from 'src/models/enums/state.enum';
 
 @Component({
@@ -14,10 +15,9 @@ export class ClockComponent implements OnInit {
   public state: State;
   private handle: any;
 
-  constructor(
-    private clockService: ClockSettingsService,
-    private titleService: TitleService
-  ) {
+  constructor(private clockService: ClockSettingsService,
+              private titleService: TitleService,
+              private notificationService: NotificationsService) {
     this.state = State.Working;
     this.updateTimes();
     this.titleService.setTitle(this.state, this.timeLeft);
@@ -28,6 +28,7 @@ export class ClockComponent implements OnInit {
       this.clockService.settingsChangeSubscribe = this.clockService.settingsChange.subscribe(
         () => {
           this.updateTimes();
+          this.notificationService.requestPermission();
         }
       );
     }
@@ -50,8 +51,10 @@ export class ClockComponent implements OnInit {
         if (this.timeLeft - aSecond <= 0) {
           if (this.state === State.Working) {
             this.onSwitchState('ShortBreak');
+            this.notificationService.create('Time to take a break!');
           } else {
             this.onSwitchState('Working');
+            this.notificationService.create('Time to get to work!');
           }
         } else {
           this.timeLeft -= aSecond;
